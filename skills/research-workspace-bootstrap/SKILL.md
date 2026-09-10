@@ -1,145 +1,158 @@
 ---
 name: research-workspace-bootstrap
-description: Initialize, audit, or reorganize a research project workspace so its rules, evidence sources, status, decisions, tasks, stage summaries, and Git history can grow safely over time. Use when starting a project folder from existing materials, standardizing an established research folder, or updating its workspace governance. Do not use for scientific analysis itself, manuscript drafting, or unrestricted bulk file reorganization.
+description: Minimally initialize, audit, or adapt a research project directory as a durable AI workspace. Use when a new folder needs essential agent navigation and safety rules, or when an established workspace needs a light governance audit. Grow project-specific state, analysis, writing, and decision artifacts only when real work requires them. Do not use for scientific analysis itself or wholesale directory reorganization.
 ---
 
 # Research Workspace Bootstrap
 
-Create a durable research workspace around the user's existing materials. Preserve scientific content, make uncertainty visible, and leave a small auditable governance layer that works in both Codex and Claude Code.
+Make a research directory understandable and safe for continued AI-assisted work with the least necessary structure.
+
+## Core posture
+
+Apply three principles together:
+
+- minimal bootstrap;
+- grow on demand from real work;
+- preserve useful existing structure.
+
+Prefer adapting to an existing useful project structure over imposing the skill's preferred structure. Templates are defaults for missing structure, not schemas that every project must conform to.
+
+This skill establishes navigation, operating boundaries, and source routing. It does not perform the project's scientific analysis.
 
 ## Authorization boundary
 
-Explicit invocation authorizes:
-
-- read-only inventory of the target project;
-- creation or revision of governance Markdown files;
-- dated rollback copies of governance files being replaced;
-- local validation;
-- Git initialization when the target is not already a repository;
-- an initial commit containing only newly generated, safe governance files.
+When the user asks to initialize or update a workspace, that authorizes a read-only inventory and creation or focused revision of bootstrap files. Before changing an existing governance file, preserve a dated rollback copy unless the project already has a safer versioning convention.
 
 It does not authorize:
 
-- opening sensitive or non-deidentified data without explicit permission;
-- changing scientific data, analyses, results, manuscripts, the user's knowledge base, or Zotero library;
-- moving, deleting, or overwriting existing source materials;
-- staging datasets, binaries, credentials, secrets, or unrelated pre-existing files;
-- creating a remote repository, adding a remote, or pushing to a remote.
+- reading sensitive or non-deidentified content without explicit permission;
+- changing scientific data, results, manuscripts, knowledgebase pages, Zotero, or external systems;
+- moving, renaming, deleting, or broadly reorganizing existing project materials;
+- scanning the whole project, knowledgebase, raw archive, or Zotero library;
+- initializing Git, staging, committing, creating a remote, or pushing unless separately requested.
 
-Stop and ask when a required action crosses this boundary.
+Stop and ask when a required action crosses these boundaries.
 
-## Operating modes
+## Choose a mode
 
-- Initialize: add governance to a new or lightly organized folder.
-- Audit: inspect an existing governance layer and report gaps without changing files unless asked.
-- Update: revise governance after the workflow has been tested in real work.
+- Minimal bootstrap: create or complete only the missing navigation layer in a new or lightly organized directory.
+- Existing-workspace mode: audit a mature directory, identify files already serving canonical roles, and fill only genuine navigation or safety gaps.
+- Audit only: report compatibility, gaps, and suggested changes without writing files.
+- Focused update: revise the workspace layer after real usage exposes a durable need.
 
-Infer the mode from the request. If ambiguity changes whether files will be written, state the assumed mode before proceeding.
+Existing useful structure takes precedence over bootstrap templates.
 
 ## Workflow
 
-### 1. Resolve the project root and governing instructions
+### 1. Resolve scope without broad scanning
 
-Confirm the target directory. Read any existing AGENTS.md, CLAUDE.md, WORKSPACE_RULES.md, README.md, or equivalent before other work. Check whether the directory is already inside a Git worktree.
+Confirm the project root and read existing AGENTS.md, CLAUDE.md, WORKSPACE_RULES.md, PROJECT.md, README.md, or obvious equivalents first. Check Git status without changing it.
 
-Inventory names, paths, types, sizes, and dates with read-only tools. Prefer rg --files and targeted metadata commands. Do not open large binaries or potentially sensitive content merely to classify it.
+Inventory filenames, paths, types, sizes, and dates only as needed to understand the workspace. Do not open large binaries, raw archives, or potentially sensitive files merely to classify them.
 
-### 2. Build the minimum project profile
+When new Word, PowerPoint, PDF, figure, or result files appear, inspect only the materials relevant to the current task. Determine whether they may change current state, report the difference in conversation, and update a canonical working file only after user confirmation or when existing workspace rules already authorize it.
 
-Use references/intake-schema.md. Extract only facts supported by the user's message or project files. Never invent sample counts, endpoints, project stage, target journal, storage paths, owners, deadlines, or data permissions.
+### 2. Identify existing canonical roles
 
-Record unknown but non-blocking fields in the task-and-blocker file. Ask the user only when an unknown materially changes safety or project structure.
+Before creating anything, map which existing files already provide:
 
-### 3. Choose the appropriate modules
+- Codex and Claude entry points;
+- shared working and safety rules;
+- a workspace map;
+- active scientific state or current deliverables;
+- project-specific plans, drafts, decisions, or evidence records.
 
-Use references/project-type-routing.md. Apply the smallest useful combination of portfolio-role and work-type modules. A one-off task should not receive the same structure as a long-running flagship project.
+Do not rename, move, duplicate, or replace a useful file simply to match a template. In an established workspace, add only the missing bootstrap or navigation layer.
 
-### 4. Announce the proposed change set
+### 3. Build the minimum project profile
+
+Read references/intake-schema.md. Use only facts supported by the user's message or project materials. Keep unsupported fields unknown; do not invent sample counts, endpoints, project stage, target journal, storage paths, owners, deadlines, or permissions.
+
+Read references/project-type-routing.md only when choosing project-specific artifacts or source routes would materially improve the result.
+
+### 4. Announce the change set
 
 Before editing, state:
 
-- files to create or revise;
-- how revised governance files will be archived;
-- current Git state;
-- which generated files would enter an initial commit;
-- which existing and untracked files will remain untouched.
+- operating mode and existing canonical files found;
+- files to create, revise, or archive;
+- materials that will remain untouched;
+- Git state and whether Git was explicitly requested.
 
-### 5. Create a minimal governance layer
+### 5. Create only the minimal bootstrap
 
-Adapt the files in assets/base rather than copying placeholders unchanged. The normal structure is:
+For missing structure, adapt assets/base to create or complete:
 
 ~~~text
 AGENTS.md
 CLAUDE.md
 WORKSPACE_RULES.md
-README.md
-项目管理/
-  当前状态.md
-  证据索引.md
-  待办与阻塞.md
-  决策记录.md
-  阶段总结.md
-  模板/分析任务包.md
-  历史版本/
+PROJECT.md
 ~~~
 
-AGENTS.md and CLAUDE.md should be short entry points. WORKSPACE_RULES.md is the single canonical rules document; avoid copying the same detailed rules into multiple files.
+- AGENTS.md is a short Codex entry point.
+- CLAUDE.md is a short Claude Code entry point.
+- WORKSPACE_RULES.md contains shared operating, safety, persistence, and source-routing rules.
+- PROJECT.md maps the current workspace: project name and role, related knowledgebase project page, major local directories and their roles, active workstreams, existing canonical working files, and current special constraints.
 
-### 6. Preserve existing work
+PROJECT.md is navigation, not a duplicate scientific record. Scientific current state remains in the related knowledgebase project page or existing project working files. README.md is optional and may remain the human-facing overview when it already serves that role.
 
-Do not move or rename source materials by default. Before replacing an existing governance file, copy it to 项目管理/历史版本 with a date and a superseded suffix. If the intended archive path already exists, choose a unique timestamped name.
+Do not create empty project-management directories or generic evidence, task, decision, or stage-summary files during bootstrap.
 
-Modify only the smallest necessary surface. When existing rules conflict, report the conflict and preserve the stricter safety constraint until the user decides.
+### 6. Route retrieval by task
 
-### 7. Define evidence routing and write-back
+Progressive retrieval is task-routed, not a mandatory linear cascade. Select the smallest useful source set:
 
-Set the default evidence order to:
+- project status or scientific question: PROJECT.md, current working files, and the related knowledgebase project page;
+- local analysis: relevant data inventory, analysis files, outputs, and logs;
+- historical decision: the specific decision record or raw history only when needed;
+- literature evidence: Zotero;
+- novelty, current landscape, or completeness: Zotero and Web in the combination needed;
+- manuscript revision: the manuscript and relevant figure or claim files, expanding only if required.
 
-1. project-local files and results;
-2. the user's designated knowledge base;
-3. Zotero;
-4. authoritative online sources.
+The user normally does not need to name the source. Do not default to full-project, full-knowledgebase, full-raw, full-Zotero, or open-world discovery.
 
-Treat this as a search order, not automatic permission to write to those systems. Distinguish observed result, literature-supported interpretation, hypothesis, and decision. Require provenance for consequential claims.
+### 7. Apply the artifact persistence gate
 
-Use balanced write-back by default: do not create a note for every conversation, but update the governance layer when a milestone, decision, reusable method, durable conclusion, or important blocker emerges.
+- Exploration: ordinary discussion, alternatives, and unconfirmed reasoning stay in conversation.
+- Stable working conclusion: create or update the relevant project-local plan or state file when the conclusion must survive across conversations.
+- Active artifact production: create or update the relevant draft when sustained writing, grant, analysis-plan, or other formal production has begun.
+- Long-term scientific state change: suggest promotion to the related knowledgebase project page, but do not modify the knowledgebase without separate authorization.
 
-### 8. Capture a baseline
+Project-local persistence is not knowledgebase promotion. The latter requires a higher threshold: stable, important, cross-session scientific state that belongs in the user's long-term knowledge system.
 
-Summarize the current stage, known inputs, existing outputs, active question, next action, and blockers. Keep unsupported claims explicitly marked as unknown or provisional.
+Use natural artifacts for the work. Examples include claim-evidence.md or manuscript.md for papers; grant-plan.md for funding proposals; analysis-plan.md or data-inventory.md for analysis; and database-state.md or release-plan.md for resources. These are examples, not a required schema.
 
-### 9. Establish Git safely
+### 8. Preserve evidence status
 
-If the project is already a Git repository, preserve its branch, ignore rules, staging area, and history. Do not commit unless explicitly requested; report git status and the proposed diff instead.
+Keep these categories distinct:
 
-If the project is not a Git repository:
+- direct project observation or result;
+- literature-supported interpretation;
+- Agent inference;
+- hypothesis or planned work;
+- user-confirmed decision.
 
-1. minimally create or extend .gitignore without overwriting existing entries;
-2. run git init -b main;
-3. inspect candidate files and their sizes;
-4. stage explicit generated governance paths only;
-5. never use git add . or git add -A;
-6. verify the staged list before committing;
-7. commit with message chore: initialize research workspace.
+Never promote preliminary or planned evidence to established evidence.
 
-Never stage pre-existing datasets, binaries, sensitive files, credentials, or unrelated work. If Git identity is missing, do not set it silently; leave the safe files staged or unstaged and report the exact blocker. Do not create or push a remote unless the user separately asks.
+### 9. Treat Git as explicit opt-in
 
-### 10. Validate
+Always inspect and report Git status. If the project is not a repository, report: 当前项目尚未启用 Git，如需可显式初始化。
 
-Run scripts/validate_workspace.py against the target project and apply references/acceptance-tests.md. Resolve structural errors. Treat warnings as review items, not automatic permission to alter scientific content.
+Do not run git init, stage, or commit unless the user explicitly asks to enable Git. If requested:
 
-### 11. Hand off
+- preserve any existing branch, history, staging area, and ignore rules;
+- never use git add . or git add -A;
+- stage only reviewed explicit paths;
+- do not include data, binaries, sensitive files, credentials, or unrelated existing work;
+- do not create a GitHub repository or push unless separately requested.
 
-Report:
+### 10. Validate and hand off
 
-- operating mode and project type selected;
-- files created, revised, and archived;
-- how to roll back;
-- validation results;
-- Git branch and commit hash, or the precise reason no commit was made;
-- untracked existing materials deliberately left outside Git;
-- unresolved facts and the next recommended action.
+Run scripts/validate_workspace.py against the target and use references/acceptance-tests.md for behavioral checks. A non-Git workspace and a workspace without a standard project-management tree can still be valid.
+
+Report the selected mode, canonical roles found, files created or revised, rollback path, validator status, Git status, unresolved facts, and the next useful action.
 
 ## Maintenance rule
 
-Evolve the workspace rules from observed friction. Promote a lesson into a durable rule or template when it recurs, affects safety or reproducibility, or saves meaningful future effort. Record substantive rule changes in the decision log and archive the superseded version.
+Update the workspace layer only when real work reveals a repeated failure, a durable workflow change, or a safety invariant. Avoid turning one project's structure into a universal rule.

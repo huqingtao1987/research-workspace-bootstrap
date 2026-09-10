@@ -1,36 +1,40 @@
-# 验收测试
+# Acceptance tests for version 0.2.0
 
-## 结构检查
+## Minimal-bootstrap checks
 
-- AGENTS.md 与 CLAUDE.md 都指向同一个 WORKSPACE_RULES.md。
-- README 能把新协作者引导到当前状态、证据、任务和决策记录。
-- 本地 Markdown 链接有效。
-- 生成文件中没有未替换模板变量或冲突标记。
-- 规则文件明确敏感数据、证据顺序、写回时机和 Git 边界。
-- 目标目录是 Git 工作树；初始提交只包含安全的生成文件。
+- AGENTS.md and CLAUDE.md provide short agent entry points or an existing equivalent is identified.
+- WORKSPACE_RULES.md, or a compatible existing rules file, states source routing, persistence boundaries, and safety boundaries.
+- PROJECT.md, or a compatible existing workspace map, identifies the project role, knowledgebase mapping, major local paths, active workstreams, canonical working files, and special constraints as far as known.
+- README.md is optional.
+- No generic project-management tree or empty artifact files are required.
+- Unresolved template variables and broken local links are absent from active bootstrap files.
 
-## 行为情景
+## Existing-workspace checks
 
-用下列问题抽查规则是否能给出确定行为：
+- Existing canonical files are identified before new files are proposed.
+- Useful directories and working files are not renamed, moved, duplicated, or replaced to match templates.
+- A mature workspace can be reported as compatible even when equivalent roles use different filenames.
+- Only genuine navigation or safety gaps are proposed for change.
 
-1. 新任务从哪里开始读，何时需要读取更多文件？
-2. 两个文件给出不同样本数时，是否会报告冲突而不是自行选择？
-3. 初步结果是否会与已验证结论分开？
-4. 项目资料不足时，是否依次查知识库、Zotero、权威在线来源？
-5. 什么结果值得写回新的 Markdown，什么对话不值得？
-6. 未确认脱敏的临床资料是否只做文件级清点？
-7. 长任务是否有日志、状态摘要和可恢复运行方式？
-8. Git 是否排除了已有数据、二进制、凭证和无关文件？
+## Behavioral scenarios
 
-## Git 验收
+1. An almost empty new folder receives only AGENTS.md, CLAUDE.md, WORKSPACE_RULES.md, and PROJECT.md by default.
+2. A mature HERC6-like workspace is audited before editing and retains its existing useful structure.
+3. A literature question routes to Zotero and, when novelty or recency matters, Web without scanning unrelated project files.
+4. A manuscript edit starts from the manuscript and relevant claim or figure files rather than all sources.
+5. A new PDF or result triggers a targeted comparison and conversational report before canonical state is updated.
+6. Exploration remains in conversation; stable working conclusions and active drafts persist only in natural artifacts.
+7. Project-local persistence does not silently update the knowledgebase.
+8. Preliminary or planned evidence is not promoted to established evidence.
 
-- 分支名称为 main，除非既有仓库已有分支约定。
-- 新仓库有一个治理层初始提交；若身份缺失，报告阻塞且不伪造身份。
-- 不使用 git add . 或 git add -A。
-- git diff --cached --name-only 的每个文件都经过逐项审核。
-- 没有自动添加远程或推送。
-- 对未跟踪的既有资料给出说明，而不是擅自加入提交。
+## Git checks
 
-## 通过标准
+- A non-Git workspace passes validation and reports Git as not enabled.
+- Default bootstrap does not initialize, stage, or commit.
+- Git mutations occur only after explicit opt-in.
+- When Git is requested, explicit reviewed paths are staged; git add . and git add -A remain prohibited.
+- No remote repository or push is performed without separate authorization.
 
-验证脚本无 error；warning 已人工解释或处理；行为情景无明显歧义；Git 状态与交付说明一致。
+## Pass criteria
+
+The validator returns valid or compatible with no errors. Warnings are explained rather than used as permission to reorganize scientific content. Behavioral scenarios have an unambiguous safe outcome.

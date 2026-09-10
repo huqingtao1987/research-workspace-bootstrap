@@ -1,115 +1,161 @@
 # Research Workspace Bootstrap
 
-Version 0.1.0
+Version 0.2.0
 
-Turn a folder containing existing research material into a durable project workspace for Codex and Claude Code.
+Turn an existing research directory into a durable AI workspace with the least necessary structure, then let it grow only when real scientific work creates a reason to persist something.
 
-The skill performs a read-only inventory, identifies authoritative sources and sensitive boundaries, creates a minimal project-management layer, writes a baseline summary, validates the result, and initializes Git without committing datasets or existing binary material.
+The governing principles are:
 
-The repository contains a Codex skill under skills/ and a Claude Code compatibility copy under claude-plugin/skills/. Their workflow content is identical; only Claude's explicit-invocation frontmatter differs. Run scripts/check_skill_parity.py after edits to prevent drift.
+- minimal bootstrap;
+- grow on demand;
+- adapt to useful existing structure.
 
-## What it creates
+Prefer adapting to an existing useful project structure over imposing the skill's preferred structure. Templates are defaults for missing structure, not schemas that every project must conform to.
 
-The default research workspace includes:
+The skill organizes navigation, working boundaries, source routing, and persistence. It does not execute the project's scientific analysis.
+
+## Default bootstrap
+
+A new or lightly organized project receives only four files by default:
 
 ~~~text
 AGENTS.md
 CLAUDE.md
 WORKSPACE_RULES.md
-README.md
-项目管理/
-├── 当前状态.md
-├── 证据索引.md
-├── 待办与阻塞.md
-├── 决策记录.md
-├── 阶段总结.md
-├── 模板/分析任务包.md
-└── 历史版本/
+PROJECT.md
 ~~~
 
-The structure is reduced for bounded one-off projects and extended only when the project type requires it.
+- AGENTS.md is the short Codex entry point.
+- CLAUDE.md is the short Claude Code entry point.
+- WORKSPACE_RULES.md contains shared operating, safety, persistence, and source-routing rules.
+- PROJECT.md maps the concrete workspace: project name and role, related knowledgebase project page, major local paths and their roles, active workstreams, canonical working files, and current special constraints.
 
-## Safety defaults
+PROJECT.md is a navigation map. It does not copy the project's complete scientific state. That state remains in the related knowledgebase project page or in established project-local working files.
 
-- Existing research files are not moved, deleted, or overwritten.
-- Files marked non-deidentified, confidential, restricted, or forbidden remain unread.
-- Knowledgebases, Zotero, and external systems remain read-only unless separately authorized.
-- Existing rules are archived before substantial revision.
-- Git stages only generated governance Markdown and safe configuration files.
-- Existing data, PDFs, slides, images, credentials, and analysis outputs remain untracked by default.
-- No Git remote is created or pushed by the skill.
+README.md is optional and may remain the human-facing overview when it is already useful.
+
+## Grow-on-demand artifacts
+
+The skill does not create an empty universal project-management tree. Artifacts appear only when real work crosses a persistence threshold.
+
+Examples include:
+
+- paper: claim-evidence.md, figure-plan.md, manuscript.md;
+- grant: grant-plan.md, grant-draft.md;
+- analysis: analysis-plan.md, data-inventory.md, analysis-task.md;
+- database or resource: database-state.md, data-pipeline.md, release-plan.md.
+
+These names are examples, not required structure. Existing equivalent files and locations take precedence.
+
+## Artifact persistence gate
+
+### Exploration
+
+Ordinary discussion, alternatives, and unconfirmed reasoning stay in conversation.
+
+### Stable working conclusion
+
+A conclusion that must survive across conversations may be written to the natural project-local plan or state file.
+
+### Active artifact production
+
+When sustained drafting of a manuscript, grant, analysis plan, release plan, or other formal output has begun, the relevant draft may be created or updated.
+
+### Long-term scientific state change
+
+The skill may suggest updating the related knowledgebase project page when an important scientific change is stable. It does not modify the knowledgebase without separate authorization.
+
+Project-local persistence is not knowledgebase promotion. They use different thresholds.
+
+## Existing-workspace mode
+
+For a mature project, the skill first audits what already works:
+
+1. identify existing files that serve canonical roles;
+2. preserve useful directories and working files;
+3. fill only genuine navigation or safety gaps;
+4. avoid renaming, moving, duplicating, or recreating structure to match templates.
+
+A HERC6-like mature workspace should therefore remain recognizably itself. The 生命组学 workspace is one useful example of a project-specific implementation, not a schema that HERC6, sc-eQTL, COReD, or other projects must follow.
+
+## Task-routed progressive retrieval
+
+Progressive retrieval is task-routed, not a mandatory local-to-knowledgebase-to-Zotero-to-Web cascade.
+
+- Current project status: PROJECT.md, relevant working files, and the related knowledgebase project page.
+- Local analysis: relevant data and analysis files.
+- Historical decisions: the specific decision record or raw history only when needed.
+- Literature evidence: Zotero.
+- Novelty, current landscape, or completeness: Zotero and Web as needed.
+- Manuscript revision: manuscript plus the relevant figure or claim files before expanding scope.
+
+The skill does not default to scanning the whole project, knowledgebase, raw archive, Zotero library, or open Web.
+
+## New materials
+
+When a new Word document, presentation, PDF, figure, or result enters the project, the skill reads only what the active task requires. It reports whether the material changes current state before updating a canonical file. Such an update requires user confirmation or an existing rule that already authorizes it.
+
+Direct project results, literature-supported interpretations, Agent inferences, hypotheses or planned work, and user-confirmed decisions remain distinct. Preliminary or planned evidence is not established evidence.
+
+## Git is opt-in
+
+Version 0.2.0 changes Git from automatic initialization to explicit opt-in.
+
+By default, the skill checks and reports Git status only. A non-Git project remains valid and receives this message:
+
+~~~text
+当前项目尚未启用 Git，如需可显式初始化。
+~~~
+
+Only a request such as 初始化 workspace，并启用 Git authorizes initialization, staging, or committing. When Git is requested, the existing safety rules remain:
+
+- never use git add . or git add -A;
+- stage only reviewed explicit paths;
+- do not add data, binaries, sensitive files, credentials, or unrelated work;
+- protect existing branch, history, staging, and ignore rules;
+- do not create a GitHub repository or push without separate authorization.
 
 ## Install in Codex
 
-Use the built-in skill installer and provide the GitHub skill path:
+Use the built-in installer with the GitHub skill path:
 
 ~~~text
 $skill-installer Install the research-workspace-bootstrap skill from
 https://github.com/huqingtao1987/research-workspace-bootstrap/tree/main/skills/research-workspace-bootstrap
 ~~~
 
-Then invoke:
+Invoke it with:
 
 ~~~text
-$research-workspace-bootstrap Initialize the current research project folder.
+$research-workspace-bootstrap Minimally initialize the current research folder.
 ~~~
 
-Codex installation guidance: https://learn.chatgpt.com/docs/build-skills
-
 ## Install in Claude Code
-
-Add the GitHub repository as a marketplace:
 
 ~~~text
 /plugin marketplace add huqingtao1987/research-workspace-bootstrap
 /plugin install research-workspace-bootstrap@huqingtao-research-skills
 ~~~
 
-If prompted, run:
-
-~~~text
-/reload-plugins
-~~~
-
-Invoke the installed plugin skill:
+Invoke the installed plugin skill with:
 
 ~~~text
 /research-workspace-bootstrap:research-workspace-bootstrap
 ~~~
 
-For local development:
+For local plugin development:
 
 ~~~bash
 claude --plugin-dir ./claude-plugin
 ~~~
 
-Claude Code plugin guidance: https://code.claude.com/docs/en/plugins
-
-## Expected Git result inside the target project
-
-The Git initialization step applies to the research project folder on which the skill is invoked. If that target project is not already a Git repository, the skill:
-
-1. creates or minimally extends a safe .gitignore;
-2. runs git init -b main;
-3. validates candidate files and sizes;
-4. stages only newly generated governance files by explicit path;
-5. attempts an initial commit named chore: initialize research workspace;
-6. leaves all pre-existing data and binary material untracked.
-
-If Git author identity is unavailable, the repository is still initialized but the skill does not change global or local identity without permission.
-
-This distribution repository is also a Git repository because GitHub distribution requires it, but that is separate from the target-project initialization behavior above.
-
-## Validate a generated workspace
-
-From this repository:
+## Validation
 
 ~~~bash
 python3 skills/research-workspace-bootstrap/scripts/validate_workspace.py /absolute/path/to/project
+python3 scripts/check_skill_parity.py
 ~~~
 
-The validator checks required files, internal Markdown links, unresolved template tokens, merge markers, obvious sensitive-file warnings, and Git repository status.
+The workspace validator accepts both the preferred four-file bootstrap and mature compatible workspaces using equivalent files. It does not require a project-management tree or Git repository.
 
-## Development status
-
-This is an initial version intended to be calibrated on real projects. Add rules only after repeated failures, durable workflow changes, or newly discovered safety invariants.
+The repository carries a Codex skill under skills/ and a Claude Code compatibility copy under claude-plugin/skills/. Their workflow is identical; only Claude's explicit-invocation frontmatter differs.

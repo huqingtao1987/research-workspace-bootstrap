@@ -9,10 +9,10 @@
 Thumbs.db
 *.swp
 
-# Runtime logs and scratch files
+# Runtime scratch files
 *.pid
 *.nohup.log
 __pycache__/
 *.py[cod]
 
-# Project-specific data exclusions must be reviewed before adding them.
+# Add project-specific exclusions only after reviewing actual project materials.

@@ -1,41 +1,38 @@
-# 项目初始化信息架构
+# Minimal workspace profile
 
-从用户说明和已有文件中提取信息，不把猜测写成事实。缺失但不阻塞初始化的信息写入 待办与阻塞.md。
+Extract only what is needed to navigate the project and choose safe behavior. PROJECT.md is a workspace map, not a full scientific summary.
 
-## 核心字段
+## Core fields
 
-| 字段 | 含义 | 缺失时处理 |
+| Field | Purpose | When unknown |
 |---|---|---|
-| project_name | 项目名称 | 可用目录名作为临时名称并标注 |
-| purpose | 项目要解决的问题 | 写为待澄清，不代拟科学问题 |
-| deliverables | 预期交付物 | 记录已知项，其余待澄清 |
-| portfolio_role | 旗舰、可靠收尾、战略资源、协作或一次性任务 | 结合资料判断；不确定时采用最小结构 |
-| current_stage | 设计、数据准备、分析、解释、写作、修订或归档 | 仅按证据填写 |
-| canonical_sources | 权威数据、记录和结果所在位置 | 只记录明确路径或系统 |
-| sensitive_boundaries | 隐私、临床、未发表、受限数据边界 | 不明确且可能敏感时必须询问 |
-| compute_location | 本地、服务器、集群与环境 | 未知时不生成虚假命令 |
-| completion_definition | 阶段和项目完成标准 | 作为待办追问 |
-| owner | 决策者、执行者与协作者 | 未知时保留角色空缺 |
-| writeback_mode | balanced、strict 或 minimal | 默认 balanced |
-| version_control | Git 状态、远程需求和跟踪范围 | 默认只跟踪生成的治理文件 |
+| project_name | Human-readable project identity | Use the directory name provisionally and label it |
+| project_role | Flagship, closure, resource, collaboration, manuscript, grant, analysis, or another user-defined role | Record as unknown; do not force a category |
+| knowledgebase_project_page | Long-term scientific state source, if one exists | State that no mapping is confirmed |
+| local_paths | Major existing directories and their actual roles | List only verified paths |
+| active_workstreams | Work currently in motion | Include only supported workstreams |
+| canonical_working_files | Existing files that own current state, plans, claims, drafts, or decisions | Name only files whose role is evident |
+| special_constraints | Privacy, unpublished work, compute, collaboration, write, or access boundaries | Ask if ambiguity creates material risk |
 
-## 重要事实记录格式
+Optional task-specific facts such as deliverables, stage, owners, completion criteria, compute environment, and deadlines belong in PROJECT.md or a natural working artifact only when they improve navigation or current work.
 
-对会影响结论、范围或安全的事实，尽量记录：
+## Existing-role mapping
 
-- 内容
-- 来源路径、Zotero 条目或网址
-- 记录日期
-- 状态：已确认、暂定、冲突或未知
-- 影响
+Before creating a preferred file, ask whether an existing file already carries the role. Record:
 
-## 何时必须询问
+- role served;
+- actual file path;
+- why it appears canonical;
+- conflicts or uncertainty;
+- whether a small navigation link is sufficient.
 
-仅在以下情况暂停并询问：
+Do not create a generic task, evidence, state, decision, or summary file merely to hold unknowns. Report non-blocking unknowns in the handoff or place them in an already active project artifact.
 
-- 可能接触未脱敏或受限数据；
-- 无法确定目标项目根目录；
-- 用户要求的目录结构会移动或覆盖已有资料；
-- Git 提交候选中出现数据、凭证、大型二进制或范围不明文件；
-- 两条既有规则相互冲突且会影响安全或结果。
+## Ask before proceeding when
+
+- the target project root is unclear;
+- sensitive or non-deidentified content might need to be opened;
+- a proposed change would move, overwrite, or replace useful existing structure;
+- two rules conflict in a way that affects safety or scientific interpretation;
+- the user has not explicitly opted into a requested Git mutation.
 

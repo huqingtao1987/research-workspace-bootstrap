@@ -1,61 +1,57 @@
-# {{PROJECT_NAME}} 工作区规则
+# {{PROJECT_NAME}} workspace rules
 
-## 项目定位
+## Scope
 
-- 目的：{{PURPOSE}}
-- 组合角色：{{PORTFOLIO_ROLE}}
-- 当前阶段：{{CURRENT_STAGE}}
-- 完成标准：{{COMPLETION_DEFINITION}}
+- Use the existing useful project structure; do not reorganize it merely to match a template.
+- Read and change only the minimum material needed for the current task.
+- Do not invent project facts. Report conflicts and unknowns explicitly.
+- Do not delete, move, rename, or overwrite existing materials without explicit authorization.
 
-## 开始任务时的最小读取
+## Task-routed sources
 
-1. 本文件；
-2. README.md；
-3. 项目管理/当前状态.md；
-4. 项目管理/待办与阻塞.md；
-5. 仅在任务需要时读取证据索引、决策记录、阶段总结和具体资料。
+Progressive retrieval is task-routed, not a mandatory linear cascade.
 
-## 工作原则
+- Current project question: use PROJECT.md and the relevant canonical working files.
+- Long-term scientific context: use the related knowledgebase project page when needed.
+- Local analysis: use the relevant data inventory, analysis files, outputs, and logs.
+- Literature support: use Zotero.
+- Novelty, current landscape, or completeness: combine Zotero and authoritative Web sources as needed.
+- Manuscript work: start with the manuscript and its relevant claim or figure files.
 
-- 先说明任务目标、输入、输出、风险和验证方式。
-- 不把未知信息补写成事实；冲突信息必须显式记录。
-- 不删除、移动或覆盖已有资料，除非用户明确要求。
-- 修改治理文件前先保存可回滚副本。
-- 观察、解释、假设和决策必须分开表述。
+Do not default to full-project, full-knowledgebase, full-raw, full-Zotero, or open-world discovery.
 
-## 证据与检索顺序
+## Evidence status
 
-1. 项目本地资料和结果；
-2. 用户指定的知识库；
-3. Zotero；
-4. 权威在线来源。
+Keep direct project observations, literature-supported interpretations, Agent inferences, hypotheses or planned work, and user-confirmed decisions distinct. Preliminary or planned evidence is not established evidence.
 
-所有关键判断记录来源、日期和置信状态。知识库与 Zotero 默认只读；写入需要用户单独授权。
+## Persistence gate
 
-## 写回规则
+- Exploration stays in conversation.
+- A stable working conclusion may update a project-local plan or state file when it must survive across conversations.
+- Active artifact production may create or update the relevant draft.
+- A stable and important long-term scientific change may be proposed for the knowledgebase project page.
 
-默认采用 balanced 模式。出现阶段成果、重要决定、可复用方法、稳定结论或关键阻塞时，更新项目管理中的相应 Markdown。普通讨论和短暂探索无需形成新文档。
+Project-local persistence is not knowledgebase promotion. Do not modify the knowledgebase without separate authorization.
 
-## 数据与隐私
+## New materials
 
-- 未确认脱敏的临床或敏感资料只做文件级清点，不读取内容。
-- 凭证、密钥、患者级数据和受限原始数据不得进入 Git。
-- 只读取完成当前任务所需的最小范围。
+When new documents, figures, or results arrive, inspect only what the current task requires. Report whether they appear to change current state before updating canonical working files. Update those files only with user confirmation or when an existing rule already authorizes it.
 
-## 分析与计算
+## Safety
 
-- 运行前记录输入、输出、软件环境、参数、日志和是否覆盖。
-- 长任务使用可恢复的后台或作业系统运行，并生成短状态摘要。
-- 新结果写入独立目录或使用新前缀；不得覆盖既有结果。
+- Do not open sensitive or non-deidentified content without explicit permission.
+- Never copy credentials, patient identifiers, or restricted content into Markdown, logs, or Git.
+- Preserve existing scientific data, analyses, results, manuscripts, and history.
+- For long or resource-intensive tasks, record inputs, outputs, logs, resource needs, and a recovery method before launch.
 
 ## Git
 
-- Git 用于规则、代码、环境描述和可安全版本化的小型文本产物。
-- 不使用 git add . 或 git add -A；逐项暂存并审核。
-- 数据、二进制、敏感文件和凭证默认不跟踪。
-- 未经明确要求，不创建远程仓库、不推送、不改写历史。
+- Check and report Git status, but do not initialize, stage, or commit unless the user explicitly asks to enable Git.
+- If Git is requested, never use git add . or git add -A; stage only reviewed explicit paths.
+- Do not add data, binaries, sensitive files, credentials, or unrelated existing work.
+- Do not create a remote repository, push, or rewrite history without separate authorization.
 
-## 项目事实待补充
+## Project-specific constraints
 
 {{PROJECT_SPECIFIC_RULES}}
 

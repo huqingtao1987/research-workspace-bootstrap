@@ -21,7 +21,7 @@ def normalized(path: Path) -> bytes:
     data = path.read_bytes()
     if path.name == "SKILL.md":
         data = data.replace(b"disable-model-invocation: true\n", b"")
-    return data
+    return data.rstrip() + b"\n"
 
 
 def main() -> int:

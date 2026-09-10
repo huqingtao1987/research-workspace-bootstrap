@@ -1,8 +1,7 @@
 interface:
-  display_name: Research Workspace Bootstrap
-  short_description: Safely organize a growing research project workspace
-  default_prompt: Use $research-workspace-bootstrap to initialize this folder as a durable research workspace, preserve existing materials, validate the result, and establish a safe local Git baseline.
+  display_name: "Research Workspace Bootstrap"
+  short_description: "Build a minimal, adaptive research workspace"
+  default_prompt: "Use $research-workspace-bootstrap to minimally initialize or audit this research folder while preserving its useful existing structure."
 
 policy:
   allow_implicit_invocation: false
-
