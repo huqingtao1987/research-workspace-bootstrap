@@ -1,0 +1,22 @@
+{
+  "name": "research-workspace-bootstrap",
+  "version": "0.1.0",
+  "description": "Initialize research folders as safe, durable, evidence-aware workspaces with Git version control.",
+  "author": {
+    "name": "huqingtao1987",
+    "url": "https://github.com/huqingtao1987"
+  },
+  "repository": "https://github.com/huqingtao1987/research-workspace-bootstrap",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Research Workspace Bootstrap",
+    "shortDescription": "Safely initialize a durable research workspace",
+    "longDescription": "Organize an existing research folder with canonical rules, evidence routing, project state, reusable summaries, validation, rollback, and a safe Git baseline.",
+    "developerName": "huqingtao1987",
+    "category": "Productivity",
+    "capabilities": ["Write"],
+    "defaultPrompt": [
+      "Initialize this research folder as a durable workspace."
+    ]
+  }
+}

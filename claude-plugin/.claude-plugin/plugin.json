@@ -1,0 +1,8 @@
+{
+  "name": "research-workspace-bootstrap",
+  "description": "Initialize research folders as safe, durable, evidence-aware workspaces with Git version control.",
+  "version": "0.1.0",
+  "author": {
+    "name": "huqingtao1987"
+  }
+}

@@ -1,0 +1,18 @@
+# Local secrets and environment overrides
+.env
+.env.*
+*.pem
+*.key
+
+# Operating-system and editor noise
+.DS_Store
+Thumbs.db
+*.swp
+
+# Runtime logs and scratch files
+*.pid
+*.nohup.log
+__pycache__/
+*.py[cod]
+
+# Project-specific data exclusions must be reviewed before adding them.

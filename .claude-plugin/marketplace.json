@@ -1,0 +1,26 @@
+{
+  "name": "huqingtao-research-skills",
+  "owner": {
+    "name": "huqingtao1987",
+    "url": "https://github.com/huqingtao1987"
+  },
+  "description": "Research workflow skills maintained by huqingtao1987.",
+  "plugins": [
+    {
+      "name": "research-workspace-bootstrap",
+      "source": "./claude-plugin",
+      "description": "Initialize a research project folder with project rules, status, evidence routing, validation, rollback, and Git.",
+      "version": "0.1.0",
+      "author": {
+        "name": "huqingtao1987"
+      },
+      "category": "research",
+      "tags": [
+        "research",
+        "workspace",
+        "project-management",
+        "git"
+      ]
+    }
+  ]
+}
